@@ -14,7 +14,7 @@ struct ContentView: View {
     
     let tipPercentages = [10, 15, 20, 25, 0]
     
-    var totalPerPerson: Double {
+    var totals: (total: Double, totalPerPerson: Double) {
         //calculate the total per person
         let peopleCount = Double(numberOfPeople + 2)
         let tipSelection = Double(tipPercentages[tipPercentage])
@@ -23,7 +23,7 @@ struct ContentView: View {
         let tipValue = orderAmount * tipSelection / 100
         let grandTotal = orderAmount + tipValue
         let amountPerPerson = grandTotal / peopleCount
-        return amountPerPerson
+        return (total: grandTotal, totalPerPerson: amountPerPerson)
     }
     
     var body: some View {
@@ -32,6 +32,7 @@ struct ContentView: View {
                 Section {
                     TextField("Amount", text: $checkAmount)
                         .keyboardType(.decimalPad)
+                    // the guide wants me to turn this into a text field but I won't do it because I think it is better the way it is.
                     Picker("Number of people", selection: $numberOfPeople) {
                            ForEach(2 ..< 100) {
                                Text("\($0) people")
@@ -48,9 +49,17 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 .textCase(nil)
-                Section {
-                    Text("$\(totalPerPerson, specifier: "%.2f")")
+                
+                Section (header: Text("Total Amount:")) {
+                    Text("$\(totals.total, specifier: "%.2f")")
                 }
+                .textCase(nil)
+                
+                Section (header: Text("Amount per Person:")) {
+                    Text("$\(totals.totalPerPerson, specifier: "%.2f")")
+                }
+                .textCase(nil)
+                
             }
             .navigationTitle("WeSplit")
         }
