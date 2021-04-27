@@ -24,12 +24,20 @@ extension View {
 struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading ,spacing: 20) {
+            Spacer()
             Text("This is my Title")
                 .modifier(BlueTitle())
             Text("This is my Title with view extension")
                 .blueTitleStyle()
             Text("Yes, they are the same.")
-                
+            Spacer()
+            
+            HStack {
+                Spacer()
+                Text("@kodegut")
+                    .padding(.horizontal)
+                    .foregroundColor(.secondary)
+            }
         }
         .padding()
     }

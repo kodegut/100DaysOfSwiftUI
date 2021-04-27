@@ -36,13 +36,13 @@ struct ContentView: View {
             LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 30) {
+                Spacer()
                 VStack {
                     Text("Tap the flag of:")
                     Text(countries[correctAnswer])
                         .font(.largeTitle)
                         .fontWeight(.black)
                 }
-                
                 
                 ForEach(0 ..< 3) { number in
                     Button(action: {
@@ -51,7 +51,14 @@ struct ContentView: View {
                         FlagImage(self.countries[number])
                     }
                 }
+                Spacer()
                 Text("Current Score: \(score)")
+                HStack {
+                    Spacer()
+                    Text("@kodegut")
+                        .padding(.horizontal)
+                        .foregroundColor(.secondary)
+                }
             }.foregroundColor(.white)
         }
         .alert(isPresented: $showingScore) {

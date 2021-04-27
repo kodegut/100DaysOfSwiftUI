@@ -28,38 +28,51 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    TextField("Amount", text: $checkAmount)
-                        .keyboardType(.decimalPad)
-                    // the guide wants me to turn this into a text field but I won't do it because I think it is better the way it is.
-                    Picker("Number of people", selection: $numberOfPeople) {
-                           ForEach(2 ..< 100) {
-                               Text("\($0) people")
-                           }
-                       }
-                }
-                
-                Section(header: Text("How much tip do you want to leave?")) {
-                    Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(0..<tipPercentages.count) {
-                            Text("\(self.tipPercentages[$0])%")
+            ZStack {
+                Form {
+                    Section {
+                        TextField("Amount", text: $checkAmount)
+                            .keyboardType(.decimalPad)
+                        // the guide wants me to turn this into a text field but I won't do it because I think it is better the way it is.
+                        Picker("Number of people", selection: $numberOfPeople) {
+                            ForEach(2 ..< 100) {
+                                Text("\($0) people")
+                            }
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Section(header: Text("How much tip do you want to leave?")) {
+                        Picker("Tip percentage", selection: $tipPercentage) {
+                            ForEach(0..<tipPercentages.count) {
+                                Text("\(self.tipPercentages[$0])%")
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                    }
+                    .textCase(nil)
+                    
+                    Section (header: Text("Total Amount:")) {
+                        Text("$\(totals.total, specifier: "%.2f")")
+                            .foregroundColor(tipPercentage == 4 ? .red : .primary)
+                    }
+                    .textCase(nil)
+                    
+                    Section (header: Text("Amount per Person:")) {
+                        Text("$\(totals.totalPerPerson, specifier: "%.2f")")
+                    }
+                    .textCase(nil)
+                    
+                    
                 }
-                .textCase(nil)
-                
-                Section (header: Text("Total Amount:")) {
-                    Text("$\(totals.total, specifier: "%.2f")")
-                        .foregroundColor(tipPercentage == 4 ? .red : .primary)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("@kodegut")
+                            .padding(.horizontal)
+                            .foregroundColor(.secondary)
+                    }
                 }
-                .textCase(nil)
-                
-                Section (header: Text("Amount per Person:")) {
-                    Text("$\(totals.totalPerPerson, specifier: "%.2f")")
-                }
-                .textCase(nil)
                 
             }
             .navigationTitle("WeSplit")
