@@ -6,5 +6,6 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 2: GuessTheFlag
 - Project 3: ViewsAndModifiers
 - Project Challenge: RockPaperScissors
-- Project 4 BetterRest
-- Project 5 WordScramble
+- Project 4: BetterRest
+- Project 5: WordScramble
+
