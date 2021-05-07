@@ -30,8 +30,13 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var score = 0
+    @State private var animating = false
+    @State private var falseFlagTapped = false
+    @State private var tappedAnswer: Int?
+    @State var animationAmount: Double = 0
     
     var body: some View {
+        
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
@@ -46,10 +51,30 @@ struct ContentView: View {
                 
                 ForEach(0 ..< 3) { number in
                     Button(action: {
+                        tappedAnswer = number
                         self.flagTapped(number)
+                        withAnimation(.interpolatingSpring(stiffness: 20, damping: 300)) {
+                            self.animationAmount += 360
+                        }
+                        
+                        withAnimation(.easeIn(duration: 2)) {
+                            animating = true
+                        }
+                        
                     }) {
+                        
                         FlagImage(self.countries[number])
+                            .rotation3DEffect(.degrees(number == tappedAnswer && number == correctAnswer ? animationAmount : 0), axis: (x:0 , y: 1, z: 0))
+                            
+                            .opacity((animating && number != correctAnswer && (number != tappedAnswer)) ? 0.25 : 1)
+                            .overlay(Color.red.opacity(animating && number != correctAnswer && number == tappedAnswer ? 0.7 : 0))
+                        
+                        
+                        
+                        
+                        
                     }
+                    
                 }
                 Spacer()
                 Text("Current Score: \(score)")
@@ -77,9 +102,12 @@ struct ContentView: View {
             scoreTitle = "Wrong! \n Thats the flag of \(countries[number])."
         }
         showingScore = true
+        animating = true
     }
     
     func askQuestion() {
+        animating = false
+        tappedAnswer = nil
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
     }
