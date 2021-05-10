@@ -51,7 +51,7 @@ struct ContentView: View {
                             .pickerStyle(SegmentedPickerStyle())
                             
                         }
-                        VStack {
+                        VStack(spacing: 50) {
                             Spacer()
                             Button(action: startGame) {
                                 VStack {
@@ -59,7 +59,15 @@ struct ContentView: View {
                                         .padding()
                                     Text("Start Game")
                                 }
-                              
+                                
+                            }
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    Text("@kodegut")
+                                        .padding(.horizontal)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                         
@@ -76,7 +84,7 @@ struct ContentView: View {
                                     Text(".")
                                         .opacity(animateDots ? 0.1 : 1)
                                         .animation(Animation.linear(duration: 1).repeatForever().delay(Double(i) * 0.4))
-                                        
+                                    
                                 }
                                 .onAppear() {
                                     animateDots = true
@@ -129,17 +137,10 @@ struct ContentView: View {
                         .onAppear {
                             animateWhale = true
                         }
-                        
-                            
                     }
-                    
                     .onTapGesture {
                         showFinish = false
                     }
-                    .animation(Animation.easeIn(duration: 2)
-                                .repeatCount(2, autoreverses: true))
-                   
-                    
                 }
             }
         }
@@ -196,8 +197,6 @@ struct ContentView: View {
                 showingAlert = false
                 playing = false
             }
-            
-            
         }
     }
 }
