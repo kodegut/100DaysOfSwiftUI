@@ -10,24 +10,47 @@ import SwiftUI
 struct ContentView: View {
     let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
     let missions: [Mission] = Bundle.main.decode("missions.json")
+    @State private var showingCrewNames = false
     
     var body: some View {
         NavigationView {
-            List(missions) { mission in
-                NavigationLink(destination: Text("Detail view")) {
-                    Image(mission.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 44, height: 44)
-
-                    VStack(alignment: .leading) {
-                        Text(mission.displayName)
-                            .font(.headline)
-                        Text(mission.formattedLaunchDate)
+            ZStack {
+                Color(UIColor.systemGray6)
+                    .ignoresSafeArea()
+                VStack {
+                    List(missions) { mission in
+                        NavigationLink(destination: MissionView(mission: mission, astronauts: astronauts)) {
+                            Image(mission.image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 44, height: 44)
+                            
+                            VStack(alignment: .leading) {
+                                Text(mission.displayName)
+                                    .font(.headline)
+                                if showingCrewNames {
+                                    Text(mission.crewNames)
+                                    
+                                } else {
+                                    Text(mission.formattedLaunchDate)
+                                }
+                                
+                            }
+                        }
+                    }
+                    .navigationBarTitle("Moonshot")
+                    .navigationBarItems(leading: Button(showingCrewNames ? "Dates" : "Crew") {
+                        showingCrewNames.toggle()
+                    })
+                    
+                    HStack {
+                        Spacer()
+                        Text("@kodegut")
+                            .padding(.horizontal)
+                            .foregroundColor(.secondary)
                     }
                 }
             }
-            .navigationBarTitle("Moonshot")
         }
     }
 }

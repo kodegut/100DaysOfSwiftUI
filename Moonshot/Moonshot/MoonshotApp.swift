@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+// This project contains content from wikipedia licensed under CC-BY-SA: https://creativecommons.org/licenses/by-sa/3.0
 
 @main
 struct MoonshotApp: App {
