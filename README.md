@@ -13,4 +13,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 7: iExpense
 - Project 8: Moonshot
 - Project 9: Drawing
+- Project Challange: ActivityTracker
 
