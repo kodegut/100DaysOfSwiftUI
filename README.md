@@ -15,4 +15,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 9: Drawing
 - Project Challange: ActivityTracker
 - Project 10: CupcakeCorner
+- Project 11: Bookworm
 
