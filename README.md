@@ -16,4 +16,7 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project Challange: ActivityTracker
 - Project 10: CupcakeCorner
 - Project 11: Bookworm
+- Project 12: CoreDataObject
+- Project Challenge: SocialNetwork 
+- Project Challenge: SocialNetwork with Core Data
 
