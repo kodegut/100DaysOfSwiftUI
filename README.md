@@ -20,4 +20,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project Challenge: SocialNetwork 
 - Project Challenge: SocialNetwork with Core Data
 - Project 13: Instafilter
+- Project 14: BucketList
 

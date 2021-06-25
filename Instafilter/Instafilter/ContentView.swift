@@ -20,6 +20,9 @@ struct ContentView: View {
     
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
     let context = CIContext()
+    @State private var currentFilterText = "Sepia Tone"
+    
+    @State private var showingAlert = false
     
     
     
@@ -76,14 +79,18 @@ struct ContentView: View {
                 }.padding(.vertical)
                 
                 HStack {
-                    Button("Change Filter") {
+                    Button(currentFilterText) {
                         self.showingFilterSheet = true
                     }
                     
                     Spacer()
                     
                     Button("Save") {
-                        guard let processedImage = self.processedImage else { return }
+                        guard let processedImage = self.processedImage else {
+                            showingAlert = true
+                            return
+                            
+                        }
                         
                         let imageSaver = ImageSaver()
                         
@@ -105,17 +112,38 @@ struct ContentView: View {
                 ImagePicker(image: self.$inputImage)
             }
             .actionSheet(isPresented: $showingFilterSheet) {
-                ActionSheet(title: Text("Select a filter"), buttons: [
-                    .default(Text("Crystallize")) { self.setFilter(CIFilter.crystallize()) },
-                    .default(Text("Edges")) { self.setFilter(CIFilter.edges()) },
-                    .default(Text("Gaussian Blur")) { self.setFilter(CIFilter.gaussianBlur()) },
-                    .default(Text("Pixellate")) { self.setFilter(CIFilter.pixellate()) },
-                    .default(Text("Sepia Tone")) { self.setFilter(CIFilter.sepiaTone()) },
-                    .default(Text("Unsharp Mask")) { self.setFilter(CIFilter.unsharpMask()) },
-                    .default(Text("Vignette")) { self.setFilter(CIFilter.vignette()) },
+                ActionSheet(title: Text("Choose Filter"), buttons: [
+                    .default(Text("Crystallize")) { self.setFilter(CIFilter.crystallize())
+                        self.currentFilterText = "Crystallize"
+                    },
+                    .default(Text("Edges")) { self.setFilter(CIFilter.edges())
+                        self.currentFilterText = "Edges"
+                    },
+                    .default(Text("Gaussian Blur")) { self.setFilter(CIFilter.gaussianBlur())
+                        self.currentFilterText = "Gaussian Blur"
+                    },
+                    .default(Text("Pixellate")) { self.setFilter(CIFilter.pixellate())
+                        self.currentFilterText = "Pixellate"
+                    },
+                    .default(Text("Sepia Tone")) { self.setFilter(CIFilter.sepiaTone())
+                        self.currentFilterText = "Sepia Tone"
+                    },
+                    .default(Text("Unsharp Mask")) { self.setFilter(CIFilter.unsharpMask())
+                        self.currentFilterText = "Unsharp Mask" 
+                    },
+                    .default(Text("Vignette")) { self.setFilter(CIFilter.vignette())
+                        self.currentFilterText = "Vignette"
+                    },
                     .cancel()
                 ])
             }
+            .alert(isPresented: $showingAlert, content: {
+                Alert(
+                    title: Text("No Picture"),
+                    message: Text("It seems there is no picture yet to save"),
+                    dismissButton: .default(Text("Ok"))
+                )
+            })
             
         }
         
