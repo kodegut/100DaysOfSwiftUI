@@ -4,63 +4,49 @@
 //
 //  Created by Tim Musil on 23.06.21.
 //
-
-import LocalAuthentication
+import MapKit
 import SwiftUI
-
-
-
-struct User: Identifiable, Comparable {
-    static func < (lhs: User, rhs: User) -> Bool {
-        lhs.lastName < rhs.lastName
-    }
-    
-    let id = UUID()
-    let firstName: String
-    let lastName: String
-}
-
-
 
 struct ContentView: View {
     
-    @State private var isUnlocked = false
+    @State private var centerCoordinate = CLLocationCoordinate2D()
+    @State private var locations = [MKPointAnnotation]()
+    
+    @State private var selectedPlace: MKPointAnnotation?
+    @State private var showingPlaceDetails = false
     
     var body: some View {
-        VStack {
-            if self.isUnlocked {
-                Text("Unlocked")
-            } else {
-                Text("Locked")
-            }
-            
-            Button("Prompt FaceID") {
-                authenticate()
-            }
-        }.onAppear(perform: authenticate)
-    }
-    
-    func authenticate() {
-        let context = LAContext()
-        var error: NSError?
-
-        // check whether biometric authentication is possible
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            // it's possible, so go ahead and use it
-            let reason = "We need to unlock your data."
-
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                // authentication has now completed
-                DispatchQueue.main.async {
-                    if success {
-                        self.isUnlocked = true
-                    } else {
-                        // there was a problem
-                    }
+        ZStack {
+            MapView(centerCoordinate: $centerCoordinate, selectedPlace: $selectedPlace, showingPlaceDetails: $showingPlaceDetails, annotations: locations)
+                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            Circle()
+                .fill(Color.blue)
+                .opacity(0.3)
+                .frame(width:32)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        let newLocation = MKPointAnnotation()
+                        newLocation.title = "Example Location"
+                        newLocation.coordinate = self.centerCoordinate
+                        self.locations.append(newLocation)
+                    }, label: {
+                        Image(systemName: "plus")
+                            .padding()
+                            .background(Color.black.opacity(0.75))
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .clipShape(Circle())
+                            .padding(.trailing)
+                    })
                 }
             }
-        } else {
-            // no biometrics
+        }.alert(isPresented: $showingPlaceDetails) {
+            Alert(title: Text(selectedPlace?.title ?? "Unknown"), message: Text(selectedPlace?.subtitle ?? "Missing place information."), primaryButton: .default(Text("OK")), secondaryButton: .default(Text("Edit")) {
+                // edit this place
+            })
         }
     }
 }

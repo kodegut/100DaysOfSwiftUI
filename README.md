@@ -10,15 +10,15 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 5: WordScramble
 - Project 6: Animations
 - Project Challenge: Edutainment
-- Project 7: iExpense
-- Project 8: Moonshot
-- Project 9: Drawing
+- Project 7: iExpense (UserDefaults, Observed Object)
+- Project 8: Moonshot (Codable)
+- Project 9: Drawing (Paths, Shapes)
 - Project Challange: ActivityTracker
-- Project 10: CupcakeCorner
-- Project 11: Bookworm
-- Project 12: CoreDataObject
-- Project Challenge: SocialNetwork 
+- Project 10: CupcakeCorner (Codable, URLSession)
+- Project 11: Bookworm (Custom Bindings, Core Data)
+- Project 12: CoreDataObject (Core Data)
+- Project Challenge: SocialNetwork
 - Project Challenge: SocialNetwork with Core Data
-- Project 13: Instafilter
-- Project 14: BucketList
+- Project 13: Instafilter (CoreImage, UIViewController, UIIMagePickerController)
+- Project 14: BucketList (MapKit, Face ID )
 
