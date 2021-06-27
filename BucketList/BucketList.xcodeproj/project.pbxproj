@@ -12,6 +12,9 @@
 		226121552683751B00B6ED8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226121542683751B00B6ED8F /* Assets.xcassets */; };
 		226121582683751B00B6ED8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 226121572683751B00B6ED8F /* Preview Assets.xcassets */; };
 		22612160268632B500B6ED8F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261215F268632B500B6ED8F /* MapView.swift */; };
+		226121622688765E00B6ED8F /* MKPointAnnotation-ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226121612688765E00B6ED8F /* MKPointAnnotation-ObservableObject.swift */; };
+		22612164268877F000B6ED8F /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22612163268877F000B6ED8F /* EditView.swift */; };
+		2261216626887A4100B6ED8F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2261216526887A4100B6ED8F /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		226121572683751B00B6ED8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		226121592683751B00B6ED8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2261215F268632B500B6ED8F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		226121612688765E00B6ED8F /* MKPointAnnotation-ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation-ObservableObject.swift"; sourceTree = "<group>"; };
+		22612163268877F000B6ED8F /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		2261216526887A4100B6ED8F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 				226121502683751900B6ED8F /* BucketListApp.swift */,
 				226121522683751900B6ED8F /* ContentView.swift */,
 				2261215F268632B500B6ED8F /* MapView.swift */,
+				226121612688765E00B6ED8F /* MKPointAnnotation-ObservableObject.swift */,
+				22612163268877F000B6ED8F /* EditView.swift */,
+				2261216526887A4100B6ED8F /* Result.swift */,
 				226121542683751B00B6ED8F /* Assets.xcassets */,
 				226121592683751B00B6ED8F /* Info.plist */,
 				226121562683751B00B6ED8F /* Preview Content */,
@@ -141,7 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2261216626887A4100B6ED8F /* Result.swift in Sources */,
 				226121532683751900B6ED8F /* ContentView.swift in Sources */,
+				22612164268877F000B6ED8F /* EditView.swift in Sources */,
+				226121622688765E00B6ED8F /* MKPointAnnotation-ObservableObject.swift in Sources */,
 				22612160268632B500B6ED8F /* MapView.swift in Sources */,
 				226121512683751900B6ED8F /* BucketListApp.swift in Sources */,
 			);
