@@ -20,5 +20,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project Challenge: SocialNetwork
 - Project Challenge: SocialNetwork with Core Data
 - Project 13: Instafilter (CoreImage, UIViewController, UIIMagePickerController)
-- Project 14: BucketList (MapKit, Face ID, URLSession)
+- Project 14: BucketList (MapKit, Face ID, URLSession, Codable, FileManager)
 
