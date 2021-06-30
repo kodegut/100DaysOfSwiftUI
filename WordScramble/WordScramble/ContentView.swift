@@ -28,16 +28,21 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            
                 VStack {
                     TextField("Enter your word", text: $newWord, onCommit: addNewWord)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .autocapitalization(.none)
                         .padding()
                     
-                    List(usedWords, id: \.self) {
-                        Image(systemName: "\($0.count).circle")
-                        Text($0)
+                    List(usedWords, id: \.self) { word in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                            Text(word)
+                        }
+                        .accessibilityElement(children: .ignore)
+                        .accessibility(label: Text("\(word), \(word.count) letters"))
+                        
                     }
                     Text("Score: \(score)")
                 }
@@ -47,19 +52,23 @@ struct ContentView: View {
                     Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
                 }
                 .navigationBarItems(leading: Button("Restart", action: startGame))
-                
-                VStack {
-                    Spacer()
-                    HStack {
+                .overlay(
+                    VStack {
                         Spacer()
-                        Text("@kodegut")
-                            .padding(.horizontal)
-                            .foregroundColor(.secondary)
-                    }
-                }
+                        HStack {
+                            Spacer()
+                            Text("kodegut")
+                                .frame(width: 100)
+                                .foregroundColor(.white)
+                                .background(Color.black.opacity(0.7))
+                                .clipShape(Capsule())
+                                .padding(.horizontal)
+                        }
+                    })
                 
                 
-            }
+                
+            
         }
     }
     
