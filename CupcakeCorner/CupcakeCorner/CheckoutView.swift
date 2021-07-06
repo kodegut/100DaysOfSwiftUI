@@ -20,6 +20,7 @@ struct CheckoutView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: gr.size.width)
+                        .accessibility(hidden: true)
                     Text("Your total is €\(orderWrapper.order.cost, specifier: "%.2f")")
                     Button("Place the order") {
                         self.placeOrder()
