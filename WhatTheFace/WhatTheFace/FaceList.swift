@@ -24,6 +24,20 @@ struct FaceList: View {
                 .onDelete(perform: removeItems)
                 
             }
+            .overlay(
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.7))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                    }
+                })
             .sheet(isPresented: $showingAddView) {
                 AddView(personStore: personStore)
             }
@@ -51,8 +65,9 @@ struct ListRow: View {
         HStack {
             Image(uiImage: (PersonStore.loadImage(imageId: person.imageId) ?? UIImage(systemName: "person"))!)
                 .resizable()
-                .frame(width: 50, height: 50)
+                .scaledToFit()
                 .clipShape(Circle())
+                .frame(width: 90, height: 90)
             Text(person.firstName)
             Text(person.lastName)
         }

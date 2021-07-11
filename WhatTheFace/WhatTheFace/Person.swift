@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct Person: Identifiable, Codable, Comparable {
     
@@ -22,5 +23,8 @@ struct Person: Identifiable, Codable, Comparable {
     var firstName: String
     var lastName: String
     var imageId: UUID
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
+    
     
 }

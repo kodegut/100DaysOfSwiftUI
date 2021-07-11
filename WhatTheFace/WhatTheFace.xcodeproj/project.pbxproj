@@ -16,6 +16,7 @@
 		2277BA052699A3C200E40247 /* FaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BA042699A3C200E40247 /* FaceList.swift */; };
 		2277BA072699A65E00E40247 /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BA062699A65E00E40247 /* PersonStore.swift */; };
 		2277BA09269AF41800E40247 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BA08269AF41800E40247 /* DetailView.swift */; };
+		2277BA0B269AFF7C00E40247 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BA0A269AFF7C00E40247 /* LocationFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2277BA042699A3C200E40247 /* FaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceList.swift; sourceTree = "<group>"; };
 		2277BA062699A65E00E40247 /* PersonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStore.swift; sourceTree = "<group>"; };
 		2277BA08269AF41800E40247 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		2277BA0A269AFF7C00E40247 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +68,13 @@
 				2277B9F12694A12700E40247 /* AddView.swift */,
 				2277BA042699A3C200E40247 /* FaceList.swift */,
 				2277BA062699A65E00E40247 /* PersonStore.swift */,
+				2277BA08269AF41800E40247 /* DetailView.swift */,
 				2277BA002699A12B00E40247 /* Person.swift */,
 				2277B9FE2694A18E00E40247 /* ImagePicker.swift */,
+				2277BA0A269AFF7C00E40247 /* LocationFetcher.swift */,
 				2277B9F32694A12800E40247 /* Assets.xcassets */,
 				2277B9F82694A12800E40247 /* Info.plist */,
 				2277B9F52694A12800E40247 /* Preview Content */,
-				2277BA08269AF41800E40247 /* DetailView.swift */,
 			);
 			path = WhatTheFace;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			files = (
 				2277BA072699A65E00E40247 /* PersonStore.swift in Sources */,
 				2277B9FF2694A18E00E40247 /* ImagePicker.swift in Sources */,
+				2277BA0B269AFF7C00E40247 /* LocationFetcher.swift in Sources */,
 				2277B9F22694A12700E40247 /* AddView.swift in Sources */,
 				2277BA09269AF41800E40247 /* DetailView.swift in Sources */,
 				2277BA052699A3C200E40247 /* FaceList.swift in Sources */,
