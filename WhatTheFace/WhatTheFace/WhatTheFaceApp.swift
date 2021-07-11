@@ -11,7 +11,7 @@ import SwiftUI
 struct WhatTheFaceApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FaceList()
         }
     }
 }
