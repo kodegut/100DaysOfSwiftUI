@@ -22,5 +22,6 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 13: Instafilter (CoreImage, UIViewController, UIIMagePickerController)
 - Project 14: BucketList (MapKit, Face ID, URLSession, Codable, FileManager)
 - Project 15: Accessibility
-- Project Challenge: WhatTheFace
+- Project Challenge: WhatTheFace (MapKit, UIIMagePickerController, Codable, FileManager)
+- Project 16: HotProspects
 
