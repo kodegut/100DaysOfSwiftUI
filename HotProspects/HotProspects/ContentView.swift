@@ -12,25 +12,34 @@ enum NetworkError: Error {
 }
 
 struct ContentView: View {
+    var prospects = Prospects()
     var body: some View {
-        Text("Hello, World!")
-            .onAppear {
-                    self.fetchData(from: "https://www.apple.com") { result in
-                        switch result {
-                        case .success(let str):
-                            print(str)
-                        case .failure(let error):
-                            switch error {
-                            case .badURL:
-                                print("Bad URL")
-                            case .requestFailed:
-                                print("Network problems")
-                            case .unknown:
-                                print("Unknown error")
-                            }
-                        }
-                    }
+        
+        TabView {
+            ProspectsView(filter: .none)
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Everyone")
                 }
+            ProspectsView(filter: .contacted)
+                .tabItem {
+                    Image(systemName: "checkmark.circle")
+                    Text("Contacted")
+                }
+            ProspectsView(filter: .uncontacted)
+                .tabItem {
+                    Image(systemName: "questionmark.diamond")
+                    Text("Uncontacted")
+                }
+            MeView()
+                .tabItem {
+                    Image(systemName: "person.crop.square")
+                    Text("Me")
+                }
+            
+            
+        }
+        .environmentObject(prospects)
     }
     
     func fetchData(from urlString: String, completion: @escaping (Result<String, NetworkError>) -> Void) {
@@ -39,7 +48,7 @@ struct ContentView: View {
             completion(.failure(.badURL))
             return
         }
-
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             // the task has completed – push our work back to the main thread
             DispatchQueue.main.async {
