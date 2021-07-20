@@ -13,6 +13,7 @@ struct ProspectsView: View {
     
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var isShowingSortingSheet = false
     
     enum FilterType {
         case none, contacted, uncontacted
@@ -42,16 +43,35 @@ struct ProspectsView: View {
         }
     }
     
+    @State private var sorting: Sorting = .name
+    
+    var sortedProspects: [Prospect] {
+        switch sorting {
+        case .name:
+            return filteredProspects.sorted(by: {$0.name > $1.name})
+        case .added:
+            return filteredProspects.sorted(by: {$0.timestamp > $1.timestamp})
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                ForEach(sortedProspects) { prospect in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        if filter == .none {
+                            Image(systemName: prospect.isContacted ? "person.fill" : "person")
+                                .padding(.horizontal)
+                        }
                     }
+                   
                     .contextMenu {
                         Button(prospect.isContacted ? "Mark Uncontacted" : "Mark Contacted" ) {
                             self.prospects.toggle(prospect)
@@ -62,17 +82,47 @@ struct ProspectsView: View {
                             }
                         }
                     }
+                    .actionSheet(isPresented: $isShowingSortingSheet) {
+                        ActionSheet(title: Text("Sort by"), buttons: [
+                            .default(Text("Name")) {
+                                sorting = .name
+                            },
+                            .default(Text("Added")) {
+                                sorting = .added
+                            },
+                            .cancel()
+                        ])
+                    }
                 }
             }
+            .overlay(
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.7))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                    }
+                })
             .navigationBarTitle(title)
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {
+                self.isShowingSortingSheet = true
+            }, label: {
+                Text("Sort")
+            })
+            ,trailing: Button(action: {
                 self.isShowingScanner = true
             }) {
                 Image(systemName: "qrcode.viewfinder")
                 Text("Scan")
             })
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Tim\ntim@kodegut", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Tim \(Int.random(in: 1...100))\ntim@kodegut", completion: self.handleScan)
             }
         }
     }
@@ -131,7 +181,7 @@ struct ProspectsView: View {
 
 struct ProspectsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProspectsView(filter: .contacted)
+        ProspectsView(filter: .none)
             .environmentObject(Prospects())
     }
 }
