@@ -24,4 +24,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 15: Accessibility
 - Project Challenge: WhatTheFace (MapKit, UIIMagePickerController, Codable, FileManager)
 - Project 16: HotProspects (CIFilter.qrCodeGenerator, QR Code, EnvironmentObject)
+- Project 17: Flashzilla (UINotificationFeedbackGenerator, Core Haptics, Gestures, Timer, Accessibility)
 
