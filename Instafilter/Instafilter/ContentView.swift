@@ -67,6 +67,7 @@ struct ContentView: View {
                                 .clipShape(Capsule())
                                 .padding()
                                 .padding(.trailing, 10)
+                                .accessibility(hidden: true)
                         }
                     })
                 .onTapGesture {

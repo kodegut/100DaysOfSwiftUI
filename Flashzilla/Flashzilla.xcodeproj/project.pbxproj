@@ -14,6 +14,7 @@
 		2259DB4D26ABF35B002184BC /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259DB4C26ABF35B002184BC /* Card.swift */; };
 		2259DB4F26ABF452002184BC /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259DB4E26ABF452002184BC /* CardView.swift */; };
 		2259DB5126AC5002002184BC /* EditCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259DB5026AC5002002184BC /* EditCards.swift */; };
+		2259DB5526AE98F1002184BC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259DB5426AE98F1002184BC /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2259DB4C26ABF35B002184BC /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2259DB4E26ABF452002184BC /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		2259DB5026AC5002002184BC /* EditCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCards.swift; sourceTree = "<group>"; };
+		2259DB5426AE98F1002184BC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				2259DB3D26A86807002184BC /* FlashzillaApp.swift */,
 				2259DB3F26A86807002184BC /* ContentView.swift */,
+				2259DB5426AE98F1002184BC /* SettingsView.swift */,
 				2259DB4E26ABF452002184BC /* CardView.swift */,
 				2259DB4C26ABF35B002184BC /* Card.swift */,
 				2259DB5026AC5002002184BC /* EditCards.swift */,
@@ -150,6 +153,7 @@
 				2259DB4026A86807002184BC /* ContentView.swift in Sources */,
 				2259DB4D26ABF35B002184BC /* Card.swift in Sources */,
 				2259DB4F26ABF452002184BC /* CardView.swift in Sources */,
+				2259DB5526AE98F1002184BC /* SettingsView.swift in Sources */,
 				2259DB5126AC5002002184BC /* EditCards.swift in Sources */,
 				2259DB3E26A86807002184BC /* FlashzillaApp.swift in Sources */,
 			);
