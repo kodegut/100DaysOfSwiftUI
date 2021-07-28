@@ -21,29 +21,38 @@ struct ContentView: View {
         var score = 0
         let usedWordsLengths = usedWords.map {$0.count}
         for length in usedWordsLengths {
-          score += length
+            score += length
         }
         return score
     }
     
     var body: some View {
-        NavigationView {
-            
+        GeometryReader { gr in
+            NavigationView {
                 VStack {
                     TextField("Enter your word", text: $newWord, onCommit: addNewWord)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .autocapitalization(.none)
                         .padding()
                     
+                    
                     List(usedWords, id: \.self) { word in
-                        HStack {
-                            Image(systemName: "\(word.count).circle")
-                            Text(word)
+                        GeometryReader { listItem in
+                            HStack {
+                                Image(systemName: "\(word.count).circle")
+                                    .foregroundColor(Color(hue: Double(listItem.frame(in: .global).maxY / gr.frame(in: .global).maxY), saturation: 1, brightness: 1))
+                                Text(word)
+                                
+                                Text("midY: \(listItem.frame(in: .global).midY)")
+                                
+                            }
+                            .offset(x: listItem.frame(in: .global).maxY > gr.frame(in: .global).midY ? 0.9 * (listItem.frame(in: .global).maxY - gr.frame(in: .global).midY): 0)
+                            .accessibilityElement(children: .ignore)
+                            .accessibility(label: Text("\(word), \(word.count) letters"))
+                            
                         }
-                        .accessibilityElement(children: .ignore)
-                        .accessibility(label: Text("\(word), \(word.count) letters"))
-                        
                     }
+                    
                     Text("Score: \(score)")
                 }
                 .navigationTitle(rootWord)
@@ -65,9 +74,7 @@ struct ContentView: View {
                                 .padding(.horizontal)
                         }
                     })
-                
-                
-                
+            }
             
         }
     }

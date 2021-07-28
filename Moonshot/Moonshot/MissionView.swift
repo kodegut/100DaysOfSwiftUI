@@ -17,16 +17,23 @@ struct MissionView: View {
     let mission: Mission
     let astronauts: [CrewMember]
     
+    let frameHeight: CGFloat = 300
+    
     var body: some View {
-        GeometryReader { gr in
+        GeometryReader { missionView in
             ScrollView(.vertical) {
                 VStack {
-                    Image(self.mission.image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: gr.size.width * 0.7)
-                        .padding(.top)
-                    
+                    GeometryReader { badge in
+                        Image(self.mission.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: max(missionView.size.width * 0.7 * 0.4, min(missionView.size.width * 0.7, badge.frame(in: .global).maxY - missionView.frame(in: .global).minY)), height: missionView.size.width * 0.7, alignment: .bottom)
+                            .position(x: badge.size.width / 2, y: badge.size.height / 2)
+                            .padding(.top)
+                            .accessibility(label: Text("Logo of \(self.mission.displayName)"))
+                    }
+                    .frame(height: missionView.size.width * 0.7)
+                    Spacer()
                     Text(mission.formattedLaunchDate)
                         .font(.headline)
                     
@@ -62,6 +69,7 @@ struct MissionView: View {
         }
         .navigationBarTitle(Text(mission.displayName), displayMode: .inline)
     }
+    
     
     init(mission: Mission, astronauts: [Astronaut]) {
         self.mission = mission
