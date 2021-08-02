@@ -27,5 +27,5 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project 17: Flashzilla (UINotificationFeedbackGenerator, CoreHaptics, Gestures, Combine, Timer, Accessibility)
 - Project 18: LayoutAndGeometry (Alignment Guides, GeometryReader, coordinateSpace)
 - Project Challenge: DiceRoller (Core Data, TabView)
-- Project 19: SnowSeeker
+- Project 19: SnowSeeker (NavigationView on iPad)
 
