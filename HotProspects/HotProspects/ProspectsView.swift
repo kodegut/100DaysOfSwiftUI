@@ -107,6 +107,7 @@ struct ProspectsView: View {
                             .clipShape(Capsule())
                             .padding()
                             .padding(.trailing, 10)
+                            .accessibilityHidden(true)
                     }
                 })
             .navigationBarTitle(title)
