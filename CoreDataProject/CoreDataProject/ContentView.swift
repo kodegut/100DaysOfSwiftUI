@@ -13,40 +13,56 @@ struct ContentView: View {
     @State private var lastNameFilter = "A"
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             
             FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: .beginsWith, sortDescriptors: []) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
-            
-            Button("Add Examples") {
-                let taylor = Singer(context: self.moc)
-                taylor.firstName = "Taylor"
-                taylor.lastName = "Swift"
+            Group {
+                Button("Add Examples") {
+                    let taylor = Singer(context: self.moc)
+                    taylor.firstName = "Taylor"
+                    taylor.lastName = "Swift"
+                    
+                    let ed = Singer(context: self.moc)
+                    ed.firstName = "Ed"
+                    ed.lastName = "Sheeran"
+                    
+                    let adele = Singer(context: self.moc)
+                    adele.firstName = "Adele"
+                    adele.lastName = "Adkins"
+                    
+                    let michael = Singer(context: self.moc)
+                    michael.firstName = "Michael"
+                    michael.lastName = "Jackson"
+                    
+                    try? self.moc.save()
+                }
                 
-                let ed = Singer(context: self.moc)
-                ed.firstName = "Ed"
-                ed.lastName = "Sheeran"
+                Button("Show A") {
+                    self.lastNameFilter = "A"
+                }
                 
-                let adele = Singer(context: self.moc)
-                adele.firstName = "Adele"
-                adele.lastName = "Adkins"
-                
-                let michael = Singer(context: self.moc)
-                michael.firstName = "Michael"
-                michael.lastName = "Jackson"
-                
-                try? self.moc.save()
-            }
-            
-            Button("Show A") {
-                self.lastNameFilter = "A"
-            }
-            
-            Button("Show S") {
-                self.lastNameFilter = "S"
-            }
+                Button("Show S") {
+                    self.lastNameFilter = "S"
+                }
+            }.padding()
         }
+        .overlay(
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text("kodegut")
+                        .frame(width: 100)
+                        .foregroundColor(.white)
+                        .background(Color.black.opacity(0.7))
+                        .clipShape(Capsule())
+                        .padding()
+                        .padding(.trailing, 10)
+                        .accessibility(hidden: true)
+                }
+            })
     }
 }
 

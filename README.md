@@ -16,7 +16,7 @@ Resources and Projects for the 100 Days of SwiftUI Course
 - Project Challange: ActivityTracker
 - Project 10: CupcakeCorner (Codable, URLSession)
 - Project 11: Bookworm (Custom Bindings, Core Data)
-- Project 12: CoreDataObject (Core Data)
+- Project 12: CoreDataProject (Core Data)
 - Project Challenge: SocialNetwork
 - Project Challenge: SocialNetwork with Core Data
 - Project 13: Instafilter (CoreImage, UIViewController, UIIMagePickerController)
