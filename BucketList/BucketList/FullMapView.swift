@@ -59,6 +59,9 @@ struct FullMapView: View {
                             .background(Color.black.opacity(0.7))
                             .clipShape(Capsule())
                             .padding()
+                            .accessibilityHidden(true)
+                        
+                        
                     }
                 })
         }
