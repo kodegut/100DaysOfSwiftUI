@@ -4,4 +4,6 @@
 
 ![CoreDataProject](https://github.com/kodegut/100DaysOfSwiftUI/blob/main/Images/CoreDataProject.gif)
 
+Working with CoreData predicates.
+
 

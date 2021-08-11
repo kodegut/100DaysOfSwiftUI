@@ -19,40 +19,39 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color(UIColor.systemGray6)
-                    .ignoresSafeArea()
-                
+            List {
+                ForEach(books, id: \.self) { book in
+                    NavigationLink(
+                        destination: DetailView(book: book),
+                        label: {
+                            EmojiRatingView(rating: book.rating)
+                                .font(.largeTitle)
+                            
+                            VStack(alignment: .leading) {
+                                Text(book.title ?? "unknown Title")
+                                    .font(.headline)
+                                    .foregroundColor(book.rating == 1 ? .red : .primary)
+                                Text(book.author ?? "unknown Author")
+                                    .foregroundColor(.secondary)
+                            }
+                        })
+                }
+                .onDelete(perform: deleteBooks)
+            }.overlay(
                 VStack {
-                    List {
-                        ForEach(books, id: \.self) { book in
-                            NavigationLink(
-                                destination: DetailView(book: book),
-                                label: {
-                                    EmojiRatingView(rating: book.rating)
-                                        .font(.largeTitle)
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(book.title ?? "unknown Title")
-                                            .font(.headline)
-                                            .foregroundColor(book.rating == 1 ? .red : .primary)
-                                        Text(book.author ?? "unknown Author")
-                                            .foregroundColor(.secondary)
-                                    }
-                                })
-                        }
-                        .onDelete(perform: deleteBooks)
-                    }
-                    
+                    Spacer()
                     HStack {
                         Spacer()
-                        Text("@kodegut")
-                            .padding(.horizontal)
-                            .foregroundColor(.secondary)
-                        
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.7))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                            .accessibility(hidden: true)
                     }
-                }
-            }
+                })
             .navigationBarTitle("Bookworm")
             .navigationBarItems(
                 leading: EditButton(),
