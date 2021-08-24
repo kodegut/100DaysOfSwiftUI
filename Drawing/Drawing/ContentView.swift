@@ -93,7 +93,23 @@ struct ContentView: View {
                 Slider(value: $hue)
                     .padding(.horizontal)
             }
+            Spacer()
         }
+        .overlay(
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Text("kodegut")
+                        .frame(width: 100)
+                        .foregroundColor(.white)
+                        .background(Color.white.opacity(0.5))
+                        .clipShape(Capsule())
+                        .padding()
+                        .padding(.trailing, 10)
+                        .accessibility(hidden: true)
+                }
+            })
     }
 }
 
