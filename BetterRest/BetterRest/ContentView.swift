@@ -35,7 +35,7 @@ struct ContentView: View {
                             .font(.headline)
                         Stepper(value: $sleepAmount, in: 4...12, step: 0.25) {
                             Text("\(sleepAmount, specifier: "%g") hours")
-                        
+                            
                         }
                         .accessibility(value: Text("\(sleepAmount, specifier: "%g") hours sleep"))
                         
@@ -71,9 +71,21 @@ struct ContentView: View {
                         .padding()
                     HStack {
                         Spacer()
-                        Text("@kodegut")
-                            .padding(.horizontal)
-                            .foregroundColor(.secondary)
+                            .overlay(
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Text("kodegut")
+                                            .frame(width: 100)
+                                            .foregroundColor(.white)
+                                            .background(Color.black.opacity(0.6))
+                                            .clipShape(Capsule())
+                                            .padding()
+                                            .padding(.trailing, 10)
+                                            .accessibility(hidden: true)
+                                    }
+                                })
                     }
                 }
             }
