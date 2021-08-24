@@ -36,6 +36,7 @@ struct MissionView: View {
                     Spacer()
                     Text(mission.formattedLaunchDate)
                         .font(.headline)
+                        .padding(.top)
                     
                     Text(self.mission.description)
                         .padding()
