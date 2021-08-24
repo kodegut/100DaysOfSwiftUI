@@ -43,7 +43,7 @@ struct ContentView: View {
                                     .foregroundColor(Color(hue: Double(listItem.frame(in: .global).maxY / gr.frame(in: .global).maxY), saturation: 1, brightness: 1))
                                 Text(word)
                                 
-                                Text("midY: \(listItem.frame(in: .global).midY)")
+                                
                                 
                             }
                             .offset(x: listItem.frame(in: .global).maxY > gr.frame(in: .global).midY ? 0.9 * (listItem.frame(in: .global).maxY - gr.frame(in: .global).midY): 0)

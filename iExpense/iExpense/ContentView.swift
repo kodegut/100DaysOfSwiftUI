@@ -43,47 +43,51 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                List {
-                    ForEach(expenses.items) {
-                        item in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text(item.name)
-                                Text(item.type)
-                            }
-                            Spacer()
-                            Text("$\(item.amount)")
-                                .foregroundColor(item.amount < 10 ? .green : item.amount < 100 ? .blue : .red)
+            
+            List {
+                ForEach(expenses.items) {
+                    item in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                            Text(item.type)
                         }
-                        
-                        
+                        Spacer()
+                        Text("$\(item.amount)")
+                            .foregroundColor(item.amount < 10 ? .green : item.amount < 100 ? .blue : .red)
                     }
-                    .onDelete(perform: removeItems)
+                    
+                    
                 }
-                .navigationTitle("iExpense")
-                .navigationBarItems(
-                    leading: EditButton()
-                    ,trailing: Button(action: {
-                        self.showingAddExpense = true
-                    }){
-                        Image(systemName:"plus")
-                    })
-                .sheet(isPresented: $showingAddExpense, content: {
-                    AddView(expenses: self.expenses)
-                })
+                .onDelete(perform: removeItems)
                 
+            }
+            .overlay(
                 VStack {
                     Spacer()
                     HStack {
                         Spacer()
-                        Text("@kodegut")
-                            .padding(.horizontal)
-                            .foregroundColor(.secondary)
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.6))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                            .accessibility(hidden: true)
                     }
-                }
-                
-            }
+                })
+            .navigationTitle("iExpense")
+            .navigationBarItems(
+                leading: EditButton()
+                ,trailing: Button(action: {
+                    self.showingAddExpense = true
+                }){
+                    Image(systemName:"plus")
+                })
+            .sheet(isPresented: $showingAddExpense, content: {
+                AddView(expenses: self.expenses)
+            })
             
             
         }
