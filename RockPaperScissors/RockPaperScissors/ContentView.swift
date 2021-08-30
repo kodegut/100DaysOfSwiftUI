@@ -41,9 +41,14 @@ struct ContentView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Text("@kodegut")
-                        .padding(.horizontal)
-                        .foregroundColor(.secondary)
+                    Text("kodegut")
+                        .frame(width: 100)
+                        .foregroundColor(.white)
+                        .background(Color.black.opacity(0.6))
+                        .clipShape(Capsule())
+                        .padding()
+                        .padding(.trailing, 10)
+                        .accessibility(hidden: true)
                 }
             }
             .navigationTitle("RockPaperScissors")

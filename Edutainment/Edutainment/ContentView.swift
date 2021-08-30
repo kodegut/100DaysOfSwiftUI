@@ -62,9 +62,9 @@ struct ContentView: View {
                                 
                             }
                             
-                                HStack {
-                                    Spacer()
-                                        .overlay(
+                            HStack {
+                                Spacer()
+                                    .overlay(
                                         VStack {
                                             Spacer()
                                             HStack {
@@ -79,7 +79,7 @@ struct ContentView: View {
                                                     .accessibility(hidden: true)
                                             }
                                         })
-                                }
+                            }
                             
                         }
                         

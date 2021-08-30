@@ -17,7 +17,7 @@ struct ContentView: View {
         
         static let allUnits = [mm,cm,m,km]
     }
-
+    
     @State private var userInput = ""
     @State private var inputUnit = einheiten.mm
     @State private var outputUnit = einheiten.cm
@@ -51,37 +51,52 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-        Form {
-            
-            Section(header: Text("Input")) {
-                TextField("Enter Value", text: $userInput)
-                    .keyboardType(.decimalPad)
-            }
-            
-            Section(header: Text("Input Unit")) {
-                Picker(selection: $inputUnit, label: Text("Picker")) {
-                    ForEach(einheiten.allUnits, id: \.self) { unit in
-                        Text(unit.rawValue)
-                    }
+            Form {
+                
+                Section(header: Text("Input")) {
+                    TextField("Enter Value", text: $userInput)
+                        .keyboardType(.decimalPad)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            
-            Section(header: Text("Output Unit")) {
-                Picker(selection: $outputUnit, label: Text("Picker")) {
-                    ForEach(einheiten.allUnits, id: \.self) { unit in
-                        Text(unit.rawValue)
+                
+                Section(header: Text("Input Unit")) {
+                    Picker(selection: $inputUnit, label: Text("Picker")) {
+                        ForEach(einheiten.allUnits, id: \.self) { unit in
+                            Text(unit.rawValue)
+                        }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
-                .pickerStyle(SegmentedPickerStyle())
+                
+                Section(header: Text("Output Unit")) {
+                    Picker(selection: $outputUnit, label: Text("Picker")) {
+                        ForEach(einheiten.allUnits, id: \.self) { unit in
+                            Text(unit.rawValue)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+                
+                
+                Section (header: Text("Result")) {
+                    Text("\(outputUnit.rawValue) \(result, specifier: "%.2f")")
+                }
             }
-
-            
-            Section (header: Text("Result")) {
-                Text("\(outputUnit.rawValue) \(result, specifier: "%.2f")")
-            }
-        }
-        .navigationTitle("Unit Conversion")
+            .overlay(
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.6))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                            .accessibility(hidden: true)
+                    }
+                })
+            .navigationTitle("Unit Conversion")
         }
     }
 }
