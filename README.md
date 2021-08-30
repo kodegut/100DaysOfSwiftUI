@@ -1,7 +1,7 @@
 # 100DaysOfSwiftUI
 Resources and Projects for the 100 Days of SwiftUI Course
 
-- Project 1: WeSplit
+- <a href="https://github.com/kodegut/100DaysOfSwiftUI/tree/main/WeSplit">Project 1</a>: WeSplit 
 - Project Challenge: Unit Conversion
 - Project 2: GuessTheFlag
 - Project 3: ViewsAndModifiers
