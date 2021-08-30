@@ -11,7 +11,6 @@ struct ContentView: View {
     @ObservedObject var activities = Activities()
     @State private var showingAddView = false
     var body: some View {
-        ZStack {
         NavigationView {
             List {
                 ForEach(activities.activities) { activity in
@@ -20,7 +19,6 @@ struct ContentView: View {
                         label: {
                             Label(activity.name, systemImage: activity.image)
                         })
-                    
                     HStack {
                         Text("Count: \(activity.count)")
                         Spacer()
@@ -40,7 +38,7 @@ struct ContentView: View {
                         .padding(.horizontal)
                     }
                     .buttonStyle(BorderlessButtonStyle())
-                   
+                    
                     
                 }
                 .onDelete(perform: removeItems)
@@ -49,23 +47,28 @@ struct ContentView: View {
             .navigationBarItems(
                 leading: EditButton(),
                 trailing: Button(action: {
-                showingAddView = true
-            }, label: {
-                Image(systemName: "plus")
-            }))
+                    showingAddView = true
+                }, label: {
+                    Image(systemName: "plus")
+                }))
             .sheet(isPresented: $showingAddView, content: {
                 AddView(activities: activities)
             })
-        }
-            VStack {
-                Spacer()
-                HStack {
+            .overlay(
+                VStack {
                     Spacer()
-                    Text("@kodegut")
-                        .padding(.horizontal)
-                        .foregroundColor(.secondary)
-                }
-            }
+                    HStack {
+                        Spacer()
+                        Text("kodegut")
+                            .frame(width: 100)
+                            .foregroundColor(.white)
+                            .background(Color.black.opacity(0.6))
+                            .clipShape(Capsule())
+                            .padding()
+                            .padding(.trailing, 10)
+                            .accessibility(hidden: true)
+                    }
+                })
         }
     }
     func removeItems(at offsets: IndexSet) {
